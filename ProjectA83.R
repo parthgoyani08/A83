@@ -23,6 +23,7 @@ data_clean <- data %>%
 nrow(data_clean)
 
 
+
 # Scatterplot of Inflation vs Close (colour by country)
 p_scatter <- ggplot(data_analysis,
                     aes(x = Inflation, y = Close, colour = country)) +
@@ -36,3 +37,6 @@ p_scatter <- ggplot(data_analysis,
   theme_minimal()
 
 p_scatter
+
+ggsave("plot_scatter_inflation_close.png",
+       plot = p_scatter, width = 7, height = 5, dpi = 300)
