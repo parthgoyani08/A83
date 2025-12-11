@@ -22,3 +22,17 @@ data_clean <- data %>%
 # How many rows remain?
 nrow(data_clean)
 
+
+# Scatterplot of Inflation vs Close (colour by country)
+p_scatter <- ggplot(data_analysis,
+                    aes(x = Inflation, y = Close, colour = country)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, colour = "black") +
+  labs(
+    title = "Relationship between Inflation and RTFP (Close) across countries",
+    x = "Inflation rate (%)",
+    y = "RTFP index (Close)"
+  ) +
+  theme_minimal()
+
+p_scatter
