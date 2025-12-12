@@ -108,3 +108,7 @@ summary(model_simple)
 # Regression with country fixed effects (controls for country differences)
 model_fe <- lm(Close ~ Inflation + country, data = data_analysis)
 summary(model_fe)
+
+# Save table outputs as CSV for possible use in appendices
+write.csv(country_summary, "country_summary.csv", row.names = TRUE)
+write.csv(cor_by_country, "cor_by_country.csv", row.names = TRUE)
