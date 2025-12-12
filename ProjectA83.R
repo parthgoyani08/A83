@@ -80,3 +80,13 @@ p_hist
 # Save histogram as PNG for your report
 ggsave("plot_hist_inflation.png",
        plot = p_hist, width = 7, height = 5, dpi = 300)
+
+#1: correlation between Inflation and Close by country (optional)
+cor_by_country <- data_analysis %>%
+  group_by(country) %>%
+  summarise(
+    cor_infl_close = cor(Inflation, Close, use = "complete.obs")
+  ) %>%
+  arrange(desc(cor_infl_close))
+
+head(cor_by_country)
