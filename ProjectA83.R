@@ -100,3 +100,11 @@ cor_test_overall <- cor.test(
 )
 
 cor_test_overall
+
+# Simple linear regression: Close ~ Inflation
+model_simple <- lm(Close ~ Inflation, data = data_analysis)
+summary(model_simple)
+
+# Regression with country fixed effects (controls for country differences)
+model_fe <- lm(Close ~ Inflation + country, data = data_analysis)
+summary(model_fe)
