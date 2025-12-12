@@ -32,7 +32,7 @@ data_analysis %>%
   select(Open, High, Low, Close, Inflation) %>%
   summary()
 
-# Country-level averages (can be used in your report text)
+# Country-level averages 
 country_summary <- data_analysis %>%
   group_by(country) %>%
   summarise(
@@ -90,3 +90,13 @@ cor_by_country <- data_analysis %>%
   arrange(desc(cor_infl_close))
 
 head(cor_by_country)
+
+# Pearson correlation test between Inflation and Close
+cor_test_overall <- cor.test(
+  x = data_analysis$Inflation,
+  y = data_analysis$Close,
+  use = "complete.obs",
+  method = "pearson"
+)
+
+cor_test_overall
