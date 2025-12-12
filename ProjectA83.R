@@ -21,6 +21,30 @@ data_clean <- data %>%
 
 # How many rows remain?
 nrow(data_clean)
+data_analysis <- data_clean %>%
+  filter(date >= as.Date("2000-01-01"),
+         date <= as.Date("2020-12-31"))
+
+# Check number of countries and date range used
+length(unique(data_analysis$country))
+range(data_analysis$date)
+data_analysis %>%
+  select(Open, High, Low, Close, Inflation) %>%
+  summary()
+
+# Country-level averages (can be used in your report text)
+country_summary <- data_analysis %>%
+  group_by(country) %>%
+  summarise(
+    mean_Close     = mean(Close, na.rm = TRUE),
+    mean_Inflation = mean(Inflation, na.rm = TRUE),
+    sd_Close       = sd(Close, na.rm = TRUE),
+    sd_Inflation   = sd(Inflation, na.rm = TRUE),
+    n_obs          = n()
+  ) %>%
+  arrange(desc(mean_Inflation))
+
+head(country_summary)
 
 
 
@@ -40,3 +64,4 @@ p_scatter
 
 ggsave("plot_scatter_inflation_close.png",
        plot = p_scatter, width = 7, height = 5, dpi = 300)
+      
