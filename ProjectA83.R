@@ -64,4 +64,19 @@ p_scatter
 
 ggsave("plot_scatter_inflation_close.png",
        plot = p_scatter, width = 7, height = 5, dpi = 300)
-      
+
+# Visualisation – supplementary histogram (Inflation)
+p_hist <- ggplot(data_analysis, aes(x = Inflation)) +
+  geom_histogram(bins = 30, alpha = 0.7) +
+  labs(
+    title = "Distribution of Inflation Rates in the Analysis Sample",
+    x = "Inflation rate (%)",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+
+p_hist
+
+# Save histogram as PNG for your report
+ggsave("plot_hist_inflation.png",
+       plot = p_hist, width = 7, height = 5, dpi = 300)
